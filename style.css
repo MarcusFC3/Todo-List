@@ -1,0 +1,27 @@
+header{
+    text-align: center;
+}
+body{
+    background-color: cornflowerblue;
+    
+}
+li{
+    margin: 2px;
+    padding: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+}
+input[type="text"]{
+    padding: 5px;
+}
+input[type="button"]{
+    margin-left:10px;
+    width:40px;
+    height: 40px;
+    align-self: center;
+    margin-top: 10px;
+}
+
+input[type="button"][value="Remove All List Items"]{
+    width:170px;
+}
