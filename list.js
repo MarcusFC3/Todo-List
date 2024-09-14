@@ -74,7 +74,12 @@ const addListItemToStorage = function (listItemTextNode) {
 
 const removeListItemFromStorage = function (localStorageKey) {
     localStorage.removeItem(localStorageKey)
+    
     addListSizeToStorage()
+    
+    for(let index = localStorageKey; index <= localStorage.getItem("size"); index ++){
+        localStorage.setItem(index, localStorage.getItem(index + 1));
+    }
 }
 
 const addListSizeToStorage = function () {
@@ -83,23 +88,26 @@ const addListSizeToStorage = function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("size") != null) {
-        for (let index = 0; index <= localStorage.getItem("size"); index++) {
-            addListItem(localStorage.getItem(index), true);
-            console.log(localStorage.getItem(index))
+         for (let index = 0; index <= localStorage.getItem("size"); index++) {
+            
+             addListItem(localStorage.getItem(index), true);
+             console.log(localStorage.getItem(index))
         }
     }
 
-    addItemButton.addEventListener("click", () => addListItem(getListItemValue(), false));
+    addItemButton.addEventListener("click", () => {addListItem(getListItemValue(), false); listItem.value = "";});
     removeItemButton.addEventListener("click", removeListItem);
-    listItemTextBox.addEventListener("keydown", () => { if (event.key == 'Enter') { addListItem(getListItemValue(), false) } })
+    listItemTextBox.addEventListener("keydown", () => { if (event.key == 'Enter') { addListItem(getListItemValue(), false); listItem.value = ""; } })
     listItemTextBox.addEventListener("keydown", () => { if (event.key == 'Delete') { removeListItem() } })
     clearListButton.addEventListener("click", () => {
         if (window.confirm("This action will delete all list entries. Are you sure you want to continue?") == true) {
             localStorage.clear();
             for (let index = 0; index < listItemArray.length; index++) {
                 listItemArray[index].remove();
-                listItemArray.splice(index, 1);
+                console.log(listItemArray.length)
             }
+            listItemArray.splice(0);
+            console.log(listItemArray.length)
         }
 
     })
