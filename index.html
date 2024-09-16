@@ -13,27 +13,34 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <header>
-                    <h1>List</h1>
-                </header>
+        <div class="borderbox">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <header>
+                        <h1>List</h1>
+                    </header>
+                </div>
             </div>
-        </div>
-        <div class="row">
+            <div class="row">
 
-            <main>
+                <main>
+                    <div class="col-12 d-flex justify-content-center" id="centered">
+                        <input type="text" name="" id="listItem"><input type="button" value="+" id="addItem">
+                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <input type="button" value="Remove All List Items" id="clearList">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <ul id="list">
 
                     </ul>
                 </div>
-                <div class="col-12 d-flex justify-content-center" id="centered">
-                    <input type="text" name="" id="listItem"><input type="button" value="+" id="addItem">
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <input type="button" value="Remove All List Items" id="clearList">
-                </div>
+            </div>
             </main>
 
         </div>

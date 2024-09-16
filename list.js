@@ -20,15 +20,27 @@ const addListItem = function (listItem, loadingFromLocalStorage) {
     list.appendChild(li);
     listItemArray.push(li);
     addListItemButtons(li);
-    li.addEventListener("click", ()=>{
-        li.classList.toggle("strikethough")
-    })
+    
     if (!loadingFromLocalStorage) {
         addListItemToStorage(li.firstChild)
     }
 }
 
 const addListItemButtons = function (li){
+    
+    deleteButton = document.createElement("input");
+    deleteButton.type = "button"
+    deleteButton.value = "Delete"
+    li.appendChild(deleteButton);
+    deleteButton.addEventListener("click", () =>{
+        if(confirm("Are you sure you want to delete the item\n\"" + li.firstChild.textContent + "\"?") == true){
+            key = getStorageValueKey(li.firstChild.textContent);
+            listItemArray[key].remove();
+            listItemArray.splice(key,1);
+            removeListItemFromStorage(key)
+        }
+    }) 
+
     editButton = document.createElement("input")
     editButton.type = "button"
     editButton.value = "Edit"
@@ -41,19 +53,15 @@ const addListItemButtons = function (li){
             localStorage.setItem(key, changes)
         }
     })
-    deleteButton = document.createElement("input");
-    deleteButton.type = "button"
-    deleteButton.value = "Delete"
-    li.appendChild(deleteButton);
-    deleteButton.addEventListener("click", () =>{
-        if(confirm("Are you sure you want to delete the item\n\"" + li.firstChild.textContent + "\"?") == true){
-            key = getStorageValueKey(li.firstChild.textContent);
-            listItemArray[key].remove();
-            listItemArray.splice(key,1);
-            removeListItemFromStorage(key)
-        }
+
+    checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    li.appendChild(checkBox);
+    checkBox.addEventListener("click", ()=>{
+        li.classList.toggle("strikethrough")
     })
 }
+
 
 const getListItemsAsString = function () {
     let message = "";
@@ -65,6 +73,9 @@ const getListItemsAsString = function () {
 
 const getListItemValue = function () {
     let listItem = document.querySelector("#listItem").value;
+    
+ 
+    
     return listItem;
 }
 
