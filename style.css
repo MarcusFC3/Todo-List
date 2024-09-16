@@ -1,27 +1,79 @@
-header{
+header {
     text-align: center;
 }
-body{
+
+body {
     background-color: cornflowerblue;
-    
+
 }
-li{
+ul{
+    position: relative;
+}
+li {
     margin: 2px;
     padding: 2px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
+    margin-right: 10px;
+    
 }
-input[type="text"]{
-    padding: 5px;
+#centered{
+    display: block;
+    align-items: center;
+}
+input[type="text"] {
+    width: 300px;
+    height: 30px;
+}
+.strikethrough{
+    text-decoration: line-through;
 }
 input[type="button"]{
-    margin-left:10px;
-    width:40px;
-    height: 40px;
-    align-self: center;
+   
+    width: 2em;
+    height: 2em;
+    text-align: center;
     margin-top: 10px;
+    margin-left: 5px;
+}
+input[type="button"][value="Edit"]{
+   
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+input[type="button"][value="Delete"]{
+   
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+input[type="button"][value="+"] {
+    margin-left: 10px;
+    margin-top: auto;
+    display: inline;
 }
 
-input[type="button"][value="Remove All List Items"]{
-    width:170px;
+input[type="button"][value="Remove All List Items"] {
+    width: 170px;
+
+}
+
+input[type="button"][value="Edit"]{
+    font-size: 14px;
+    width: 4em;
+    display: inline;
+    height: 50%;
+    transform: translate(0,-25%);
+}
+input[type="button"][value="Delete"]{
+    font-size: 14px;
+    width: 4em;
+    display: inline;
+    height: 50%;
+    transform: translate(0,-25%);
 }

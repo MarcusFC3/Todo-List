@@ -2,7 +2,6 @@
 list = document.querySelector("#list");
 addItemButton = document.querySelector("#addItem");
 listItemTextBox = document.querySelector("#listItem");
-removeItemButton = document.querySelector("#removeItem");
 clearListButton = document.querySelector("#clearList");
 let listItemArray = [];
 
@@ -20,37 +19,40 @@ const addListItem = function (listItem, loadingFromLocalStorage) {
     li.appendChild(document.createTextNode(listItem));
     list.appendChild(li);
     listItemArray.push(li);
+    addListItemButtons(li);
+    li.addEventListener("click", ()=>{
+        li.classList.toggle("strikethough")
+    })
     if (!loadingFromLocalStorage) {
         addListItemToStorage(li.firstChild)
     }
 }
 
-/**
- * This method prompts the user to select a list element to be removed.
- */
-const removeListItem = function () {
-    if (listItemArray.length == 0) {
-        alert("you must enter a list item before you can remove one")
-    } else {
-        let message = getListItemsAsString();
-
-        let input = -1;
-
-        while (input < 0 || input > listItemArray.length || isNaN(input)) {
-            input = parseInt(window.prompt("Enter the number that corresponds to the Item you wish to delete. type 0 to close this window\n" + message, "0"))
-            console.log(input)
-            if (input < 0 || input > listItemArray.length || isNaN(input)) {
-                alert("please enter a valid number")
-                input = -1
-            }
+const addListItemButtons = function (li){
+    editButton = document.createElement("input")
+    editButton.type = "button"
+    editButton.value = "Edit"
+    li.appendChild(editButton)
+    editButton.addEventListener("click", () =>{
+        changes = prompt("Enter the changes you would like to make to this item\n" + li.firstChild.textContent, li.firstChild.textContent);
+        if(changes != null){
+            key = getStorageValueKey(li.firstChild.textContent);
+            li.firstChild.textContent = changes;
+            localStorage.setItem(key, changes)
         }
-        if (input > 0 && input <= listItemArray.length) {
-            listItemArray[input - 1].remove();
-            listItemArray.splice(input - 1, 1);
-            removeListItemFromStorage(input - 1)
-            input--;
+    })
+    deleteButton = document.createElement("input");
+    deleteButton.type = "button"
+    deleteButton.value = "Delete"
+    li.appendChild(deleteButton);
+    deleteButton.addEventListener("click", () =>{
+        if(confirm("Are you sure you want to delete the item\n\"" + li.firstChild.textContent + "\"?") == true){
+            key = getStorageValueKey(li.firstChild.textContent);
+            listItemArray[key].remove();
+            listItemArray.splice(key,1);
+            removeListItemFromStorage(key)
         }
-    }
+    })
 }
 
 const getListItemsAsString = function () {
@@ -60,11 +62,24 @@ const getListItemsAsString = function () {
     }
     return message;
 }
+
 const getListItemValue = function () {
     let listItem = document.querySelector("#listItem").value;
     return listItem;
 }
 
+const getStorageValueKey = function(textValue){
+    for(let index = 0; index < listItemArray.length; index++){
+        if(textValue == listItemArray[index].textContent){
+            return index;
+        }
+    }
+    return null;
+}
+
+const changeListItemInStorage = function (text){
+    localStorage.getItem()
+}
 const addListItemToStorage = function (listItemTextNode) {
     localStorage.setItem(listItemArray.length - 1, listItemTextNode.textContent);
     if (listItemArray.length != null) {
@@ -96,9 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     addItemButton.addEventListener("click", () => {addListItem(getListItemValue(), false); listItem.value = "";});
-    removeItemButton.addEventListener("click", removeListItem);
     listItemTextBox.addEventListener("keydown", () => { if (event.key == 'Enter') { addListItem(getListItemValue(), false); listItem.value = ""; } })
-    listItemTextBox.addEventListener("keydown", () => { if (event.key == 'Delete') { removeListItem() } })
     clearListButton.addEventListener("click", () => {
         if (window.confirm("This action will delete all list entries. Are you sure you want to continue?") == true) {
             localStorage.clear();
