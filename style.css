@@ -16,6 +16,7 @@ main{
 }
 ul{
     position: relative;
+    color: #7FFFD4;
 }
 li {
     font-family: Arial, Helvetica, sans-serif;
