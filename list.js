@@ -27,11 +27,12 @@ const addListItem = function (listItem, loadingFromLocalStorage) {
 }
 
 const addListItemButtons = function (li){
-    
+    span = document.createElement("span");
+    li.appendChild(span);
     deleteButton = document.createElement("input");
     deleteButton.type = "button"
     deleteButton.value = "Delete"
-    li.appendChild(deleteButton);
+    span.appendChild(deleteButton);
     deleteButton.addEventListener("click", () =>{
         if(confirm("Are you sure you want to delete the item\n\"" + li.firstChild.textContent + "\"?") == true){
             key = getStorageValueKey(li.firstChild.textContent);
@@ -44,7 +45,7 @@ const addListItemButtons = function (li){
     editButton = document.createElement("input")
     editButton.type = "button"
     editButton.value = "Edit"
-    li.appendChild(editButton)
+    span.appendChild(editButton)
     editButton.addEventListener("click", () =>{
         changes = prompt("Enter the changes you would like to make to this item\n" + li.firstChild.textContent, li.firstChild.textContent);
         if(changes != null){
@@ -56,7 +57,7 @@ const addListItemButtons = function (li){
 
     checkBox = document.createElement("input");
     checkBox.type = "checkbox";
-    li.appendChild(checkBox);
+    span.appendChild(checkBox);
     checkBox.addEventListener("click", ()=>{
         li.classList.toggle("strikethrough")
     })

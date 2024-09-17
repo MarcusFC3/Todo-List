@@ -7,11 +7,7 @@ body {
     scroll-behavior: smooth;
 }
 .borderbox{
-    
-
-
-
-  background-color: #143054;
+    background-color: #143054;
     border-radius: 5%;
     box-shadow: 0px 0px 10px black;
 }
@@ -19,13 +15,18 @@ ul{
     position: relative;
 }
 li {
-    margin: 2px;
-    padding: 2px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
     margin-right: 10px;
     list-style-type:none;
     text-align: left;
+    display: inline-block;
+    width: 75vw;
+    float: left;
+}
+span{
+    display: inline-block;
+    float: right;
 }
 #centered{
     display: block;
@@ -44,6 +45,7 @@ input{
     float: right;
     border-style:hidden;
     text-align: center;
+    
 }
 input[type="button"]{
    
@@ -56,7 +58,7 @@ input[type="button"]{
 }
 input[type="checkbox"]{
     margin-left: 10px;
-    margin-top: 3px;
+    margin-top: 10px;
     text-align: center;
     width: 25px;
     height: 25px;
@@ -79,16 +81,16 @@ input[type="button"][value="Edit"]{
     width: 4em;
     display: inline;
     height: 25px;
-    transform: translate(0,-25%);
+    margin-top: 10px;
     
-    
+
 }
 input[type="button"][value="Delete"]{
     font-size: 14px;
     width: 4em;
     display: inline;
     height: 25px;
-    transform: translate(0,-25%);
+    margin-top: 10px;
     text-decoration: none;
-    margin-right: 40px;
+    margin-right: 5vw;
 }
