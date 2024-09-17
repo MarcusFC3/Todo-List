@@ -11,6 +11,9 @@ body {
     border-radius: 5%;
     box-shadow: 0px 0px 10px black;
 }
+main{
+    color: green;
+}
 ul{
     position: relative;
 }
